@@ -1,0 +1,20 @@
+Setup:-
+
+Here's a minimal, working TypeScript + Playwright project to load a page:
+Project structure:
+playwright-ts/
+├── package.json
+├── tsconfig.json
+└── src/
+    └── loadPage.tsCreated 3 files, ran 2 commands, read a fileCreated 3 files, ran 2 commands, read a fileTo get started:
+bashnpm install
+npx playwright install chromium   # download browser binary
+npm start
+Key points about loadPage.ts:
+
+Uses browser?.close() in a finally block so the browser always closes, even on errors — avoids hanging processes.
+waitUntil: "domcontentloaded" is faster than the default "load" and sufficient for most use cases. Switch to "networkidle" if you need SPAs to fully render.
+Browser | null typing with the nullish-safe close (?.) prevents runtime errors if launch fails before assignment.
+
+Change the URL in the last line to target any page you like.
+To run, use npx ts-node src/loadPage.ts 
